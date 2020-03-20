@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: aspapp-deployment
   labels:
-    app: aspapp
+    app: aspapp-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aspapp
+      app: aspapp0
   template:
     metadata:
       labels:
-        app: aspapp
+        app: aspapp0
     spec:
       containers:
       - name: aspapp
