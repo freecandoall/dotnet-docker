@@ -42,5 +42,5 @@ kind: Secret
 metadata:
   name: acrtest989-secret
 data:
-  username: acrTest989
+  username: default-token-fmqpf
   password: epoxnNlnA=j6+UbLpLKKe/Fa5e2oD0Bv
