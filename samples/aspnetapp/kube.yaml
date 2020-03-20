@@ -4,6 +4,9 @@ metadata:
   name: samples-aspnetapp
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+     name: samples-aspnetapp
   strategy:
     rollingUpdate:
       maxSurge: 1
