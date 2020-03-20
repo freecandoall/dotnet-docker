@@ -17,6 +17,8 @@ spec:
       containers:
       - name: aspapp
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
+        imagePullSecrets:
+        - name: acrtest989-secret
         ports:
         - containerPort: 80
 ---
@@ -34,3 +36,11 @@ spec:
       targetPort: 5000
   selector:
     app: aspapp
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: acrtest989-secret
+data:
+  username: acrTest989
+  password: epoxnNlnA=j6+UbLpLKKe/Fa5e2oD0Bv
