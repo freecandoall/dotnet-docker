@@ -1,22 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aspapp-deployment
-  labels:
-    app: aspapp-deployment
+  name: main-worker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aspapp0
+      app: main-worker
   template:
     metadata:
       labels:
-        app: aspapp0
+        app: main-worker
     spec:
       containers:
-      - name: aspapp
-        image: acrtest989.azurecr.io/samples/aspnetapp:0.3
+      - name: main-worker
+        image: acrtest989.azurecr.io/samples/aspnetapp:latest
         ports:
         - containerPort: 80
       imagePullSecrets:
