@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+spec: {}
+status: {}
+
+
+---
+
+apiVersion: extensions/v1beta1 #기본 버전
+kind: Deployment #deployment 배포
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  generation: 2
+  labels:
+    run: demo-web
+  name: demo-web
+spec:
+  progressDeadlineSeconds: 600 #600초가 지났을 때, 상태를 false로 바꾼다.
+  replicas: 1 #복제본은 항상 3개를 유지한다.
+  revisionHistoryLimit: 10 #롤백하기 위한 이전 버전을 최대 10개까지 보관한다.
+  selector:
+    matchLabels:
+      run: demo-web #lable을 선택한다.
+  strategy:
+    rollingUpdate: #롤링 업데이트 방식으로 새 버전을 배포한다.
+      maxSurge: 25% #제한 pod 갯수 이외에 25% 생성가능
+      maxUnavailable: 25% #최대 25% 만큼 pod 변경
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: demo-web
+    spec:
+      containers:
+      - image: acrtest989.azurecr.io/samples/aspnetapp:latest
+        imagePullPolicy: Always
+        name: demo-web
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      imagePullSecrets:
+      - name: acr-secret
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+
+ 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-web-dev-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    run: demo-web
+
+  
