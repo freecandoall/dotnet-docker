@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 80
       imagePullSecrets:
-      - name: acrtest989-secret
+      - name: my-image-pull-secret
 ---
 apiVersion: v1
 kind: Service
@@ -36,12 +36,3 @@ spec:
       targetPort: 5000
   selector:
     app: aspapp
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: acrtest989-secret
-type: Opaque
-data:
-  username: cmFwa2Vy
-  password: em1mZm56anRtMTJcIVxA
