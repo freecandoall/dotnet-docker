@@ -16,6 +16,6 @@ spec:
       - name: aspapp
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
         ports:
-        - containerPort: 80
+        - containerPort: 5000
       imagePullSecrets:
       - name: acr-secret
