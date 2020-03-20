@@ -19,7 +19,7 @@ spec:
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
         ports:
         - containerPort: 80
-      magePullSecrets:
+      imagePullSecrets:
       - name: acrtest989-secret
 ---
 apiVersion: v1
