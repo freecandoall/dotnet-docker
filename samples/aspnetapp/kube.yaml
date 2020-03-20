@@ -17,10 +17,10 @@ spec:
       containers:
       - name: aspapp
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
-        imagePullSecrets:
-        - name: acrtest989-secret
         ports:
         - containerPort: 80
+      magePullSecrets:
+      - name: acrtest989-secret
 ---
 apiVersion: v1
 kind: Service
