@@ -1,28 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: samples-aspnetapp
+  name: aspnetapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-     name: samples-aspnetapp
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 5
+     name: aspnetapp
+  strategy: {}
   template:
     metadata:
       labels:
-        app: samples-aspnetapp
+        app: aspnetapp
     spec:
-      nodeSelector:
-        'beta.kubernetes.io/os': nodepool1
       containers:
       - name: aspnetapp
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
         resources: {}
         env:
         - name: PORT
-          value: '4000'
+          value: '5000'
