@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 80
       imagePullSecrets:
-      - name: acrtest989-secret
+      - name: user-pass
 ---
 apiVersion: v1
 kind: Service
