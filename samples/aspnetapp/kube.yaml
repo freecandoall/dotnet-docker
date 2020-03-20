@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: aspapp
-        image: acrtest989.azurecr.io/samples/aspnetapp:latest
+        image: acrtest989.azurecr.io/samples/aspnetapp:0.3
         ports:
         - containerPort: 80
       imagePullSecrets:
