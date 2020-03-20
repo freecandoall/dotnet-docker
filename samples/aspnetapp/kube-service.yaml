@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: samples-aspnetapp
-  name: aspnetapp
+    app: aspapp
+  name: aspapp-service
 spec:
   type: LoadBalancer
   ports:
@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       targetPort: 5000
   selector:
-    app: samples-aspnetapp
+    app: aspapp

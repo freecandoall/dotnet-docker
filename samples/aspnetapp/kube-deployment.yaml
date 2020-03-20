@@ -1,22 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aspnetapp
+  name: aspapp-deployment
+  labels:
+    app: aspapp
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-     name: aspnetapp
-  strategy: {}
+      app: aspapp
   template:
     metadata:
       labels:
-        app: aspnetapp
+        app: aspapp
     spec:
       containers:
-      - name: aspnetapp
+      - name: aspapp
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
-        resources: {}
-        env:
-        - name: PORT
-          value: '5000'
+        ports:
+        - containerPort: 80
