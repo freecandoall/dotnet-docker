@@ -15,7 +15,7 @@ spec:
         app: samples-aspnetapp
     spec:
       nodeSelector:
-        'beta.kubernetes.io/os': linux
+        'beta.kubernetes.io/os': nodepool1
       containers:
       - name: aspnetapp
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
