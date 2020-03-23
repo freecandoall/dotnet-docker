@@ -40,7 +40,7 @@ spec:
         imagePullPolicy: Always
         name: demo-web
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         resources:
           requests:
             cpu: 250m
@@ -67,7 +67,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 5000
+    targetPort: 80
   selector:
     run: demo-web
 
