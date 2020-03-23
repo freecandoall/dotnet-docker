@@ -17,6 +17,13 @@ spec:
         image: acrtest989.azurecr.io/samples/aspnetapp:latest
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: 300m
+            cpu: "1"
+          limits:
+            memory: 300m
+            cpu: "1"
       imagePullSecrets:
       - name: acr-secret
 ---
