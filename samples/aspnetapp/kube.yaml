@@ -19,10 +19,10 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            memory: 500m
+            memory: 1000m
             cpu: "1"
           limits:
-            memory: 500m
+            memory: 1000m
             cpu: "1"
       imagePullSecrets:
       - name: acr-secret
