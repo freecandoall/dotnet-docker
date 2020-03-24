@@ -16,7 +16,7 @@ spec:
       - name: acr-secret
       containers:
       - name: aspapp
-        image: $(Repository)/$(AppImageName):$(TAG)
+        image: "$(Repository)/$(AppImageName):$(TAG)"
         ports:
         - containerPort: 80
         env:
