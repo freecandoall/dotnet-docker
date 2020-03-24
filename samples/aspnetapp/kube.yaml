@@ -16,15 +16,15 @@ spec:
       - name: acr-secret
       containers:
       - name: aspapp
-        image: $(Repository)$(AppImageName)$(TAG)
+        image: $(repository)$(app_image_name)$(tag)
         ports:
         - containerPort: 80
         env:
-        - name: Repository
+        - name: repository
           value: "acr987.azurecr.io/"
-        - name: AppImageName
+        - name: app_image_name
           value: "samples/aspnetapp:"
-        - name: TAG
+        - name: tag
           value: "0.1"
 ---
 apiVersion: v1
