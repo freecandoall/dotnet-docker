@@ -29,8 +29,10 @@ spec:
       - name: TAG
         value: "0.1"
       - name: InPort
+        type: integer
         value: 80
       - name: TargetPort
+        type: integer
         value: 80
 ---
 apiVersion: v1
