@@ -17,6 +17,7 @@ spec:
         image: ${Repository}/${AppImageName}:${TAG}
         ports:
         - containerPort: ${InPort}
+          type: integer
       imagePullSecrets:
       - name: acr-secret
       env:
@@ -29,7 +30,6 @@ spec:
       - name: TAG
         value: "0.1"
       - name: InPort
-        type: integer
         value: 80
       - name: TargetPort
         type: integer
