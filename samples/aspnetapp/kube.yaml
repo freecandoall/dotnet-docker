@@ -12,13 +12,13 @@ spec:
       labels:
         app: ${AppName}
     spec:
+      imagePullSecrets:
+      - name: acr-secret
       containers:
       - name: ${AppName}
         image: ${Repository}/${AppImageName}:${TAG}
         ports:
         - containerPort: 80
-      imagePullSecrets:
-      - name: acr-secret
         env:
         - name: AppName
           value: "aspapp"
