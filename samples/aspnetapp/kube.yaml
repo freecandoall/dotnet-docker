@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ${AppName}-deployment
+  name: aspapp-deployment
 spec:
   replicas: 1
   selector:
@@ -34,7 +34,7 @@ kind: Service
 metadata:
   labels:
     app: ${AppName}
-  name: ${AppName}-service
+  name: aspapp-service
 spec:
   type: LoadBalancer
   ports:
