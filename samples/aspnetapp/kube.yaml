@@ -1,37 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: main-worker
+  name: ${AppName}-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aspapp
+      app: ${AppName}
   template:
     metadata:
       labels:
-        app: aspapp
+        app: ${AppName}
     spec:
       containers:
-      - name: aspapp
-        image: acrtest987.azurecr.io/samples/aspnetapp:0.1
+      - name: ${AppName}
+        image: ${Repository}/${AppImageName}:${TAG}
         ports:
-        - containerPort: 80
+        - containerPort: ${InPort}
       imagePullSecrets:
       - name: acr-secret
+      env:
+      - name: AppName
+        value: "aspapp"
+      - name: Repository
+        value: "acr987.azurecr.io"
+      - name: AppImageName
+        value: "samples/aspnetapp"
+      - name: TAG
+        value: "0.1"
+      - name: InPort
+        value: 80
+      - name: TargetPort
+        value: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: aspapp
-  name: aspapp-service
+    app: ${AppName}
+  name: ${AppName}-service
 spec:
   type: LoadBalancer
   ports:
     - name: http
       protocol: TCP
-      port: 80
-      targetPort: 80
+      port: ${InPort}
+      targetPort: ${TargetPort}
   selector:
-    app: aspapp
+    app: ${AppName}
