@@ -6,22 +6,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ${AppName}
+      app: aspapp
   template:
     metadata:
       labels:
-        app: ${AppName}
+        app: aspapp
     spec:
       imagePullSecrets:
       - name: acr-secret
       containers:
-      - name: ${AppName}
+      - name: aspapp
         image: ${Repository}/${AppImageName}:${TAG}
         ports:
         - containerPort: 80
         env:
-        - name: AppName
-          value: "aspapp"
         - name: Repository
           value: "acr987.azurecr.io"
         - name: AppImageName
@@ -33,7 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: ${AppName}
+    app: aspapp
   name: aspapp-service
 spec:
   type: LoadBalancer
@@ -43,4 +41,4 @@ spec:
       port: 80
       targetPort: 80
   selector:
-    app: ${AppName}
+    app: aspapp
