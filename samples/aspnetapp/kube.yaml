@@ -16,7 +16,7 @@ spec:
       - name: ${AppName}
         image: ${Repository}/${AppImageName}:${TAG}
         ports:
-        - containerPort: ${InPort}
+        - containerPort: 80
       imagePullSecrets:
       - name: acr-secret
       env:
@@ -28,11 +28,6 @@ spec:
         value: "samples/aspnetapp"
       - name: TAG
         value: "0.1"
-      - name: InPort
-        value: "80"
-      - name: TargetPort
-        type: integer
-        value: "80"
 ---
 apiVersion: v1
 kind: Service
@@ -45,7 +40,7 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: ${InPort}
-      targetPort: ${TargetPort}
+      port: 80
+      targetPort: 80
   selector:
     app: ${AppName}
